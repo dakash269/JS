@@ -1,35 +1,47 @@
 
-
+1.Employee and Projects
 create database employee;use employee;
 create table employee(employee_id bigint,employee_name varchar(25),project_id bigint,supervisor_id bigint,PRIMARY KEY (employee_id),FOREIGN KEY (project_id) REFERENCES project(project_id));
 create table project(project_id bigint, project_description varchar(50),PRIMARY KEY (project_id));
 
+
+2.Cab Renting
 create database cab;use cab;
 create table customer(customer_id bigint,customer_name varchar(25),cab_id bigint,PRIMARY KEY (customer_id),FOREIGN KEY (cab_id) REFERENCES cab(cab_id));
 create table cab(cab_id bigint, cab_number varchar(25),driver_id bigint UNIQUE,PRIMARY KEY (cab_id), FOREIGN KEY (driver_id) REFERENCES driver(driver_id));
 create table driver(driver_id bigint, driver_name varchar(25),PRIMARY KEY (driver_id));
 
+weak:customer
 
+3. IRCTC
 create database IRCTC;use IRCTC;
 create table customer(customer_id bigint,customer_name varchar(25),ticket_id bigint UNIQUE,PRIMARY KEY (customer_id),FOREIGN KEY (ticket_id) REFERENCES ticket(ticket_id));
 create table train(train_id bigint, train_number varchar(25),PRIMARY KEY (train_id));
 create table ticket(ticket_id bigint, ticket_description varchar(50),train_id bigint,PRIMARY KEY (ticket_id),FOREIGN KEY (train_id) REFERENCES train(train_id));
 
+weak:ticket,customer
+
+4.Food delivery
 create database akash;use akash;
 create table orderlist(order_id bigint,order_description varchar(100),delivery_person_id bigint,customer_id bigint,PRIMARY KEY (order_id),FOREIGN KEY (customer_id) REFERENCES customer(customer_id),FOREIGN KEY (delivery_person_id) REFERENCES delivery_person(delivery_person_id));
 create table customer(customer_id bigint,customer_name varchar(25),restaurant_id bigint,PRIMARY KEY (customer_id),FOREIGN KEY (restaurant_id) REFERENCES restaurant(restaurant_id));
 create table restaurant(restaurant_id bigint, restaurant_name varchar(25),PRIMARY KEY (restaurant_id));
 create table delivery_person(delivery_person_id bigint, delivery_person_name varchar(25),PRIMARY KEY (delivery_person_id));
 
+weak: orderlist
+
+5.Hotel Booking
 create database hotel;use hotel;
 create table customer(customer_id bigint,customer_name varchar(25),isFirstTime tinyint,hotel_id bigint,PRIMARY KEY (customer_id),FOREIGN KEY (hotel_id) REFERENCES hotel(hotel_id));
 create table hotel(hotel_id bigint, hotel_name varchar(25),PRIMARY KEY (hotel_id));
 
+6.IMDB
 create database IMDB;use IMDB;
 create table tvseries(tvseries_id bigint, tvseries_name varchar(25),actor_id bigint);
 create table movie(movie_id bigint, movie_name varchar(25),actor_id bigint);
 create table actor(actor_id bigint, actor_name varchar(25),PRIMARY KEY (actor_id));
 
+7.E-commerce
 create database ecommerce;use ecommerce;
 create table item(item_id bigint,item_name varchar(25),supplier_id bigint,order_id bigint,PRIMARY KEY (item_id),FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id),FOREIGN KEY (order_id) REFERENCES orderlist(order_id));
 create table customer(customer_id bigint,customer_name varchar(25),order_id bigint UNIQUE,PRIMARY KEY (customer_id),FOREIGN KEY (order_id) REFERENCES orderlist(order_id));
