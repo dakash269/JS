@@ -1,4 +1,9 @@
 app.controller('controller',['$scope', function($scope) {
+        $scope.deleteData = function (index,$index) {
+            var rem=$scope.tables[index].menuData.splice($index,1);
+            $scope.tables[index].totalAmount=$scope.tables[index].totalAmount-rem[0].price;
+            $scope.tables[index].numberOfItems=$scope.tables[index].numberOfItems-1;
+        };
         $scope.menuData = [{
             id:1,
             name:'Crustly Garlic',
