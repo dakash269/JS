@@ -22,9 +22,9 @@
             <p>Table :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order Details</p>
             <table style="width:100%">
                 <tr><th>S.N. </th><th> Item</th><th>Price</th><th>amount</th></tr>
-                <tr ng-repeat="entry in tables[index].menuData" ><td>{{$index+1}}</td><td>{{entry.name}}</td><td>{{entry.price}}</td><td><input type="text" ng-model="entry.quantity"/></td><td><button class="fa fa-trash fa-lg" ng-click="deleteData(index,$index)"></button></td></tr>
-            </table><br/>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total:{{tables[index].totalAmount}}</span>
+                <tr ng-repeat="entry in tables[index].menuData | unique: 'name'" ><td>{{$index+1}}</td><td>{{entry.name.key}}</td><td>{{entry.price}}</td><td><input type="text" ng-model="entry.name.value" ng-change="update(index)"/></td><td><button class="fa fa-trash fa-lg" ng-click="deleteData(index,$index)"></button></td></tr>
+            </table><br/><br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ng-click="Bill(index)">Prepare Bill</a>
         </div>
     </div>
     <div class="col-md-2 col-sm-4 col-xs-4">
@@ -34,17 +34,17 @@
             Table{{table.id}}<br/>
             <h5>Rs.{{table.totalAmount}} |<span > Total items:{{table.numberOfItems}}</span></h5>
             <div ng-repeat="post in table.menuData">
-            <div ng-model= "post.price" style="visibility: hidden" ng-init="table.totalAmount = table.totalAmount + post.price*post.quantity">Rs.{{post.price}}</div>
-            <div style="visibility: hidden" ng-init="table.numberOfItems = table.numberOfItems + 1"></div>
+            <div ng-model= "post.price" class="hidden" ng-init="table.totalAmount = table.totalAmount + post.price*post.name.value">Rs.{{post.price}}</div>
+            <div class="hidden" ng-init="table.numberOfItems = table.numberOfItems + 1"></div>
             </div>
         </div>
     </div>
     <div class="col-md-7 col-md-offset-1 col-sm-4 col-xs-4">
         <div align="center" style="font-size: 30px">Menu</div>
         <input type="text" id="myInput" ng-model="searchtxt" placeholder="Search menu .. by courses,by food" title="Type in a name">
-        <div dnd-list="menuData">
+        <div>
         <div id="myUL" ng-repeat="post in menuData | filter : searchtxt" dnd-draggable="post"  dnd-effect-allowed="move">
-         {{post.name}}<br/>
+         {{post.name.key}}<br/>
         <h5>{{post.price}}.00<span style="visibility: hidden">{{post.type}}</span></h5>
         </div>
         </div>
