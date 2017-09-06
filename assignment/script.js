@@ -7,6 +7,7 @@ app.controller('controller',['$scope', function($scope) {
             $scope.tables[index].totalAmount = 0;
             $scope.tables[index].numberOfItems = 0;
             for(var i=0;i<$scope.tables[index].menuData.length;i++ ) {
+                // $scope.tables[index].menuData[i].name
                 $scope.tables[index].totalAmount = $scope.tables[index].totalAmount +
                     $scope.tables[index].menuData[i].name.value * $scope.tables[index].menuData[i].price;
                 $scope.tables[index].numberOfItems = $scope.tables[index].numberOfItems +
@@ -15,8 +16,8 @@ app.controller('controller',['$scope', function($scope) {
         };
         $scope.deleteData = function (index,$index) {
             var rem=$scope.tables[index].menuData.splice($index,1);
-            $scope.tables[index].totalAmount=$scope.tables[index].totalAmount-rem[0].price;
-            $scope.tables[index].numberOfItems=$scope.tables[index].numberOfItems-1;
+            $scope.tables[index].totalAmount=$scope.tables[index].totalAmount-rem[0].price*rem[0].name.value;
+            $scope.tables[index].numberOfItems=$scope.tables[index].numberOfItems-rem[0].name.value;
         };
         $scope.menuData = [{
             id:1,
@@ -55,11 +56,6 @@ app.controller('controller',['$scope', function($scope) {
             numberOfItems: 0,
             menuData:[]
         }];
-    // $scope.Id = '1';
-    // $scope.projectNames = $filter('filter')($scope.tables[0].menuData, function (project) {
-    //     return $scope.Id === project.id;
-    //
-    // });
     $scope.sample = angular.merge([], $scope.tables);
     $scope.openModal = function ($index) {
         $scope.index=$index;
@@ -73,7 +69,7 @@ app.controller('controller',['$scope', function($scope) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        }
+        };
     };
     }])
     .filter('unique', function() {
@@ -85,9 +81,10 @@ app.controller('controller',['$scope', function($scope) {
                     keys.push(key);
                     output.push(entry);
                 }
+
             });
-            // output[0].name.value=parseInt(output[0].name.value)+parseInt(collection[name].value);
             return output;
         };
-    });
+    })
+;
 
