@@ -3,11 +3,10 @@ app.controller('controller',['$scope', function($scope) {
         var bill = 'Your bill is ' +$scope.tables[index].totalAmount;
         alert(bill );
     };
-        $scope.update = function (index) {
+        $scope.update = function (index,$index) {
             $scope.tables[index].totalAmount = 0;
             $scope.tables[index].numberOfItems = 0;
-            for(var i=0;i<$scope.tables[index].menuData.length;i++ ) {
-                // $scope.tables[index].menuData[i].name
+            for(var i=$scope.tables[index].menuData.length-1;i>=0;i-- ) {
                 $scope.tables[index].totalAmount = $scope.tables[index].totalAmount +
                     $scope.tables[index].menuData[i].name.value * $scope.tables[index].menuData[i].price;
                 $scope.tables[index].numberOfItems = $scope.tables[index].numberOfItems +

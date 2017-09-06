@@ -22,7 +22,7 @@
             <p>Table :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Order Details</p>
             <table style="width:100%">
                 <tr><th>S.N. </th><th> Item</th><th>Price</th><th>amount</th></tr>
-                <tr ng-repeat="entry in tables[index].menuData | unique: 'name'" ><td>{{$index+1}}</td><td>{{entry.name.key}}</td><td>{{entry.price}}</td><td><input type="text" ng-model="entry.name.value" ng-change="update(index)"/></td><td><button class="fa fa-trash fa-lg" ng-click="deleteData(index,$index)"></button></td></tr>
+                <tr ng-repeat="entry in tables[index].menuData | unique: 'name'" ><td>{{$index+1}}</td><td>{{entry.name.key}}</td><td>{{entry.price}}</td><td><input type="text" ng-model="entry.name.value" ng-change="update(index,$index)"/></td><td><button class="fa fa-trash fa-lg" ng-click="deleteData(index,$index)"></button></td></tr>
             </table><br/><br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" ng-click="Bill(index)">Prepare Bill</a>
         </div>
