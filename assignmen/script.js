@@ -5,11 +5,11 @@ var menuData = [{
 }, {
     name:{key:'French Fries',value:1},
     type:'desserts',
-    price:105
+    price:195
 }, {
     name:{key:'Home Country Fries with Herbs and Chilli Flakes',value:1},
     type:'appetizers',
-    price:105
+    price:175
 }, {
     name:{key:'French Fries with Cheese and Jalapenos',value:1},
     type:'beverages',
@@ -54,18 +54,18 @@ function drop(ev) {
         if (ev.target.id==='a1') j=0;
         if (ev.target.id==='b1') j=1;
         if (ev.target.id==='c1') j=2;
-        tables[j].menuData.push({name:{key:'French Fries',value:1}, type:'desserts', price:105});
+        tables[j].menuData.push({name:{key:'French Fries',value:1}, type:'desserts', price:195});
         tables[j].numberOfItems+=1;
-        tables[j].totalAmount+=105;
+        tables[j].totalAmount+=195;
     }
     if(document.getElementById(data)===c) {
         var k=-1;
         if (ev.target.id==='a1') k=0;
         if (ev.target.id==='b1') k=1;
         if (ev.target.id==='c1') k=2;
-        tables[k].menuData.push({name:{key:'Home Country Fries with Herbs and Chilli Flakes',value:1}, type:'appetizers', price:105});
+        tables[k].menuData.push({name:{key:'Home Country Fries with Herbs and Chilli Flakes',value:1}, type:'appetizers', price:175});
         tables[k].numberOfItems+=1;
-        tables[k].totalAmount+=105;
+        tables[k].totalAmount+=175;
     }
     if(document.getElementById(data)===d) {
         var l=-1;
@@ -76,9 +76,9 @@ function drop(ev) {
         tables[l].numberOfItems+=1;
         tables[l].totalAmount+=135;
     }
-    if (ev.target.id==='a1') setTable1(tables[0].menuData.length-1);
-    if (ev.target.id==='b1') setTable2(tables[1].menuData.length-1);
-    if (ev.target.id==='c1') setTable3(tables[2].menuData.length-1);
+    if (ev.target.id==='a1') setRow1(tables[0].menuData.length-1);
+    if (ev.target.id==='b1') setRow2(tables[1].menuData.length-1);
+    if (ev.target.id==='c1') setRow3(tables[2].menuData.length-1);
     document.getElementById("myUL1").innerHTML="<li><a href=\"#\" id=\"a1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table1<br/>\n" +
         "<h5>Rs."+tables[0].totalAmount+" |<span > Total items:"+tables[0].numberOfItems+"</span></h5></a>\n" + "</li>\n" +
         "<li><a href=\"#\" id=\"b1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table2<br/>\n" +
@@ -92,51 +92,47 @@ function drop(ev) {
     btn2.onclick = function() { modal2.style.display = "block";};
     btn3.onclick = function() { modal3.style.display = "block";};
 }
-var row1 =document.getElementById("mytable1").createTHead().insertRow(0);
-    row1.insertCell(0).innerHTML='<b>S.N.<b>';
-    row1.insertCell(1).innerHTML='<b>Item<b>';
-    row1.insertCell(2).innerHTML='<b>Price<b>';
-    row1.insertCell(3).innerHTML='<b>Quantity<b>';
-var row2 =document.getElementById("mytable2").createTHead().insertRow(0);
-    row2.insertCell(0).innerHTML='<b>S.N.<b>';
-    row2.insertCell(1).innerHTML='<b>Item<b>';
-    row2.insertCell(2).innerHTML='<b>Price<b>';
-    row2.insertCell(3).innerHTML='<b>Quantity<b>';
-var row3 =document.getElementById("mytable3").createTHead().insertRow(0);
-    row3.insertCell(0).innerHTML='<b>S.N.<b>';
-    row3.insertCell(1).innerHTML='<b>Item<b>';
-    row3.insertCell(2).innerHTML='<b>Price<b>';
-    row3.insertCell(3).innerHTML='<b>Quantity<b>';
-function setTable1 (id) {
-       i = tables[0].menuData.length-1;
+// var row1 =document.getElementById("mytable1").createTHead().insertRow(0);
+//     row1.insertCell(0).innerHTML='<b>S.N.<b>';
+//     row1.insertCell(1).innerHTML='<b>Item<b>';
+//     row1.insertCell(2).innerHTML='<b>Price<b>';
+//     row1.insertCell(3).innerHTML='<b>Quantity<b>';
+// var row2 =document.getElementById("mytable2").createTHead().insertRow(0);
+//     row2.insertCell(0).innerHTML='<b>S.N.<b>';
+//     row2.insertCell(1).innerHTML='<b>Item<b>';
+//     row2.insertCell(2).innerHTML='<b>Price<b>';
+//     row2.insertCell(3).innerHTML='<b>Quantity<b>';
+// var row3 =document.getElementById("mytable3").createTHead().insertRow(0);
+//     row3.insertCell(0).innerHTML='<b>S.N.<b>';
+//     row3.insertCell(1).innerHTML='<b>Item<b>';
+//     row3.insertCell(2).innerHTML='<b>Price<b>';
+//     row3.insertCell(3).innerHTML='<b>Quantity<b>';
+function setRow1 (i) {
             var row = document.getElementById("mytable1").createTHead().insertRow(i);
             row.insertCell(0).innerHTML = i+1;
             row.insertCell(1).innerHTML = tables[0].menuData[i].name.key;
             row.insertCell(2).innerHTML = tables[0].menuData[i].price;
-            row.insertCell(3).innerHTML = tables[0].menuData[i].name.value;
-            // document.getElementById("mytable1").getElementsByTagName('td')[3].contentEditable="true";
-            row.insertCell(4).innerHTML = "<button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(0,"+ id +")\"></button>"//tables[0].menuData[i].name.value;
+            row.insertCell(3).innerHTML = "<input type=\"text\" class=\"inp1\" style='width: 50px' value='"+tables[0].menuData[i].name.value+"' onchange=\"update(0,"+i+",this.value)\"/>";
+            row.insertCell(4).innerHTML = "<button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(0,"+ i +")\"></button>"
 }
-function setTable2 (id) {
-    i = tables[1].menuData.length-1;
-    console.log(tables[1].menuData[0].name.value);
+function setRow2 (i) {
     var row = document.getElementById("mytable2").createTHead().insertRow(i);
     row.insertCell(0).innerHTML = i+1;
     row.insertCell(1).innerHTML = tables[1].menuData[i].name.key;
     row.insertCell(2).innerHTML = tables[1].menuData[i].price;
-    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' value='"+tables[1].menuData[i].name.value +"' onchange=\"update(1)\"/>"; //tables[0].menuData[i].name.value;
-    row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(1,"+ id +")\"></button>"//tables[0].menuData[i].name.value;
+    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' value='"+tables[1].menuData[i].name.value+"' onchange=\"update(1,"+i+",this.value)\"/>";
+    row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(1,"+ i +")\"></button>"
 }
-function setTable3 (id) {
-    i = tables[2].menuData.length-1;
+function setRow3 (i) {
     var row = document.getElementById("mytable3").createTHead().insertRow(i);
     row.insertCell(0).innerHTML = i+1;
     row.insertCell(1).innerHTML = tables[2].menuData[i].name.key;
     row.insertCell(2).innerHTML = tables[2].menuData[i].price;
-    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' onchange=\"update(2)\"/>"; //tables[0].menuData[i].name.value;
-    row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(2,"+ id +")\"></button>"//tables[0].menuData[i].name.value;
+    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' value='"+tables[2].menuData[i].name.value+"' onchange=\"update(2,"+i+",this.value)\"/>";
+    row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(2,"+ i +")\"></button>"
 }
-function update(index) {
+function update(index,ind,value) {
+    tables[index].menuData[ind].name.value=value;
     tables[index].totalAmount = 0;
     tables[index].numberOfItems = 0;
     for(var i=tables[index].menuData.length-1;i>=0;i-- ) {
@@ -159,8 +155,34 @@ function update(index) {
     btn3.onclick = function() { modal3.style.display = "block";};
 }
 function deleteData(index,$index) {
-    document.getElementById("mytable1").createTHead().deleteRow($index);
     var rem=tables[index].menuData.splice($index,1);
+    if(index===0) {
+        for(var j=0;j<tables[0].menuData.length;j++){
+            setRow1(j);
+        }
+        var i=tables[0].menuData.length;
+        for(var k=0;k<i+1;k++){
+            document.getElementById("mytable1").tHead.children[i].remove();
+        }
+    }
+    if(index===1) {
+        for(j=0;j<tables[1].menuData.length;j++){
+            setRow2(j);
+        }
+         i=tables[1].menuData.length;
+        for(k=0;k<i+1;k++){
+            document.getElementById("mytable2").tHead.children[i].remove();
+        }
+    }
+    if(index===2) {
+        for( j=0;j<tables[2].menuData.length;j++){
+            setRow3(j);
+        }
+         i=tables[2].menuData.length;
+        for( k=0;k<i+1;k++){
+            document.getElementById("mytable3").tHead.children[i].remove();
+        }
+    }
     tables[index].totalAmount=tables[index].totalAmount-rem[0].price*rem[0].name.value;
     tables[index].numberOfItems=tables[index].numberOfItems-rem[0].name.value;
     document.getElementById("myUL1").innerHTML = "<li><a href=\"#\" id=\"a1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table1<br/>\n" +
@@ -175,7 +197,6 @@ function deleteData(index,$index) {
     btn1.onclick = function() { modal1.style.display = "block";};
     btn2.onclick = function() { modal2.style.display = "block";};
     btn3.onclick = function() { modal3.style.display = "block";};
-    console.log(tables[index].totalAmount);
 }
 document.getElementById("myUL1").innerHTML = "<li><a href=\"#\" id=\"a1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table1<br/>\n" +
     "<h5>Rs."+tables[0].totalAmount+" |<span > Total items:"+tables[0].numberOfItems+"</span></h5></a>\n" + "</li>\n" +
