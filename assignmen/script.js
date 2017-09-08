@@ -335,5 +335,14 @@ window.onclick = function(event) {
         modal3.style.display = "none";
     }
 };
+function Bill(index) {
+    if(index===1)
+    var bill = 'Your bill is ' +tables[0].totalAmount;
+    if(index===2)
+        bill = 'Your bill is ' +tables[1].totalAmount;
+    if(index===3)
+        bill = 'Your bill is ' +tables[2].totalAmount;
+    alert(bill);
+}
 
 
