@@ -45,40 +45,101 @@ function drop(ev) {
         if (ev.target.id==='a1') i=0;
         if (ev.target.id==='b1') i=1;
         if (ev.target.id==='c1') i=2;
-        tables[i].menuData.push({name:{key:'Crustly Garlic',value:1}, type:'main-course', price:105});
+        var flag=0;
+        for(j=0;j<tables[i].menuData.length;j++) {
+            if (tables[i].menuData[j].name.key === 'Crustly Garlic') {
+                flag++;
+                var x=j;
+            }
+        }
+        if(flag===0) tables[i].menuData.push({name: {key: 'Crustly Garlic', value: 1}, type: 'main-course', price: 105});
+        else {
+            tables[i].menuData[x].name.value += 1;
+            if(i===0)document.getElementsByClassName("inp1")[x].value=tables[i].menuData[x].name.value;
+            if(i===1)document.getElementsByClassName("inp2")[x].value=tables[i].menuData[x].name.value;
+            if(i===2)document.getElementsByClassName("inp3")[x].value=tables[i].menuData[x].name.value;
+        }
         tables[i].numberOfItems+=1;
         tables[i].totalAmount+=105;
+        if (ev.target.id==='a1' && flag===0) setRow1(tables[0].menuData.length-1);
+        if (ev.target.id==='b1' && flag===0) setRow2(tables[1].menuData.length-1);
+        if (ev.target.id==='c1' && flag===0) setRow3(tables[2].menuData.length-1);
     }
     if(document.getElementById(data)===b) {
-        var j=-1;
-        if (ev.target.id==='a1') j=0;
-        if (ev.target.id==='b1') j=1;
-        if (ev.target.id==='c1') j=2;
-        tables[j].menuData.push({name:{key:'French Fries',value:1}, type:'desserts', price:195});
-        tables[j].numberOfItems+=1;
-        tables[j].totalAmount+=195;
+        var p=-1;
+        if (ev.target.id==='a1') p=0;
+        if (ev.target.id==='b1') p=1;
+        if (ev.target.id==='c1') p=2;
+         flag=0;
+        for(j=0;j<tables[p].menuData.length;j++) {
+            if (tables[p].menuData[j].name.key === 'French Fries') {
+                flag++;
+                x=j;
+            }
+        }
+        if(flag===0) tables[p].menuData.push({name:{key:'French Fries',value:1}, type:'desserts', price:195});
+        else {
+            tables[p].menuData[x].name.value+=1;
+            if(p===0) document.getElementsByClassName("inp1")[x].value=tables[p].menuData[x].name.value;
+            if(p===1) document.getElementsByClassName("inp2")[x].value=tables[p].menuData[x].name.value;
+            if(p===2) document.getElementsByClassName("inp3")[x].value=tables[p].menuData[x].name.value;
+        }
+        tables[p].numberOfItems+=1;
+        tables[p].totalAmount+=195;
+        if (ev.target.id==='a1' && flag===0) setRow1(tables[0].menuData.length-1);
+        if (ev.target.id==='b1' && flag===0) setRow2(tables[1].menuData.length-1);
+        if (ev.target.id==='c1' && flag===0) setRow3(tables[2].menuData.length-1);
     }
     if(document.getElementById(data)===c) {
         var k=-1;
         if (ev.target.id==='a1') k=0;
         if (ev.target.id==='b1') k=1;
         if (ev.target.id==='c1') k=2;
-        tables[k].menuData.push({name:{key:'Home Country Fries with Herbs and Chilli Flakes',value:1}, type:'appetizers', price:175});
+         flag=0;
+        for(j=0;j<tables[k].menuData.length;j++) {
+            if (tables[k].menuData[j].name.key === 'Home Country Fries with Herbs and Chilli Flakes' ) {
+                flag++;
+                x=j;
+            }
+        }
+        if(flag===0) tables[k].menuData.push({name:{key:'Home Country Fries with Herbs and Chilli Flakes',value:1}, type:'appetizers', price:175});
+        else {
+            tables[k].menuData[x].name.value+=1;
+            if(k===0) document.getElementsByClassName("inp1")[x].value=tables[k].menuData[x].name.value;
+            if(k===1) document.getElementsByClassName("inp2")[x].value=tables[k].menuData[x].name.value;
+            if(k===2) document.getElementsByClassName("inp3")[x].value=tables[k].menuData[x].name.value;
+        }
         tables[k].numberOfItems+=1;
         tables[k].totalAmount+=175;
+        if (ev.target.id==='a1' && flag===0) setRow1(tables[0].menuData.length-1);
+        if (ev.target.id==='b1' && flag===0) setRow2(tables[1].menuData.length-1);
+        if (ev.target.id==='c1' && flag===0) setRow3(tables[2].menuData.length-1);
     }
     if(document.getElementById(data)===d) {
         var l=-1;
         if (ev.target.id==='a1') l=0;
         if (ev.target.id==='b1') l=1;
         if (ev.target.id==='c1') l=2;
-        tables[l].menuData.push({name:{key:'French Fries with Cheese and Jalapenos',value:1}, type:'beverages', price:135});
+         flag=0;
+        for(j=0;j<tables[l].menuData.length;j++) {
+            if (tables[l].menuData[j].name.key === 'French Fries with Cheese and Jalapenos' ) {
+                flag++;
+                x=j;
+            }
+        }
+        if(flag===0) tables[l].menuData.push({name: {key:'French Fries with Cheese and Jalapenos',value:1}, type:'beverages', price:135});
+        else {
+            tables[l].menuData[x].name.value+=1;
+            if(l===0) document.getElementsByClassName("inp1")[x].value=tables[l].menuData[x].name.value;
+            if(l===1) document.getElementsByClassName("inp2")[x].value=tables[l].menuData[x].name.value;
+            if(l===2) document.getElementsByClassName("inp3")[x].value=tables[l].menuData[x].name.value;
+        }
         tables[l].numberOfItems+=1;
         tables[l].totalAmount+=135;
+        if (ev.target.id==='a1' && flag===0) setRow1(tables[0].menuData.length-1);
+        if (ev.target.id==='b1' && flag===0) setRow2(tables[1].menuData.length-1);
+        if (ev.target.id==='c1' && flag===0) setRow3(tables[2].menuData.length-1);
     }
-    if (ev.target.id==='a1') setRow1(tables[0].menuData.length-1);
-    if (ev.target.id==='b1') setRow2(tables[1].menuData.length-1);
-    if (ev.target.id==='c1') setRow3(tables[2].menuData.length-1);
     document.getElementById("myUL1").innerHTML="<li><a href=\"#\" id=\"a1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table1<br/>\n" +
         "<h5>Rs."+tables[0].totalAmount+" |<span > Total items:"+tables[0].numberOfItems+"</span></h5></a>\n" + "</li>\n" +
         "<li><a href=\"#\" id=\"b1\" ondrop=\"drop(event)\" ondragover=\"allowDrop(event)\">Table2<br/>\n" +
@@ -112,7 +173,7 @@ function setRow1 (i) {
             row.insertCell(0).innerHTML = i+1;
             row.insertCell(1).innerHTML = tables[0].menuData[i].name.key;
             row.insertCell(2).innerHTML = tables[0].menuData[i].price;
-            row.insertCell(3).innerHTML = "<input type=\"text\" class=\"inp1\" style='width: 50px' value='"+tables[0].menuData[i].name.value+"' onchange=\"update(0,"+i+",this.value)\"/>";
+            row.insertCell(3).innerHTML = "<input type=\"number\" onkeypress=\"return (event.charCode === 8 || event.charCode === 0 || event.charCode === 13) ? null : event.charCode >= 48 && event.charCode <= 57\" class=\"inp1\" style='width: 50px' value='"+tables[0].menuData[i].name.value+"' onchange=\"update(0,"+i+",this.value)\"/>";
             row.insertCell(4).innerHTML = "<button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(0,"+ i +")\"></button>"
 }
 function setRow2 (i) {
@@ -120,7 +181,7 @@ function setRow2 (i) {
     row.insertCell(0).innerHTML = i+1;
     row.insertCell(1).innerHTML = tables[1].menuData[i].name.key;
     row.insertCell(2).innerHTML = tables[1].menuData[i].price;
-    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' value='"+tables[1].menuData[i].name.value+"' onchange=\"update(1,"+i+",this.value)\"/>";
+    row.insertCell(3).innerHTML = "<input type=\"number\" onkeypress=\"return (event.charCode === 8 || event.charCode === 0 || event.charCode === 13) ? null : event.charCode >= 48 && event.charCode <= 57\" class=\"inp2\" style='width: 50px' value='"+tables[1].menuData[i].name.value+"' onchange=\"update(1,"+i+",this.value)\"/>";
     row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(1,"+ i +")\"></button>"
 }
 function setRow3 (i) {
@@ -128,7 +189,7 @@ function setRow3 (i) {
     row.insertCell(0).innerHTML = i+1;
     row.insertCell(1).innerHTML = tables[2].menuData[i].name.key;
     row.insertCell(2).innerHTML = tables[2].menuData[i].price;
-    row.insertCell(3).innerHTML = "<input type=\"text\" style='width: 50px' value='"+tables[2].menuData[i].name.value+"' onchange=\"update(2,"+i+",this.value)\"/>";
+    row.insertCell(3).innerHTML = "<input type=\"number\" onkeypress=\"return (event.charCode === 8 || event.charCode === 0 || event.charCode === 13) ? null : event.charCode >= 48 && event.charCode <= 57\" class=\"inp3\" style='width: 50px' value='"+tables[2].menuData[i].name.value+"' onchange=\"update(2,"+i+",this.value)\"/>";
     row.insertCell(4).innerHTML = "  <button class=\"fa fa-trash fa-lg\" onclick=\"deleteData(2,"+ i +")\"></button>"
 }
 function update(index,ind,value) {
